@@ -1,0 +1,68 @@
+body {
+	background: #555;
+	font: .9em sans-serif; 
+}
+body * {
+	box-sizing: border-box;
+}
+form {
+	width: 300px;
+	margin: 0 auto;
+	margin-top: 200px;
+	padding: 20px;
+	border: 10px solid #bbb;
+	border-radius: 3px;
+	box-shadow: 0 0 12px rgba(0,0,0,0.3);
+	background: #eee;
+}
+form .field {
+  margin-bottom: 10px;
+  color: #eee;
+}
+form label {
+	color: #999;
+}
+form input {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-top: 5px;
+}
+
+form .upload {
+	position: relative;
+  overflow: hidden;
+	width: 100%;
+	padding: 8px;
+	text-align: center;
+	background: #dd4b4d;
+	border-radius: 3px;
+}
+form .choose {
+	position: relative;
+  overflow: hidden;
+	width: 100%;
+	padding: 8px;
+	text-align: center;
+	background: grey;
+	border-radius: 3px;
+}
+form .upload input[type="submit"] {
+	position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+form .upload label {
+	color: #fff;
+}
+form .upload label:before {
+	content: "\21EA";
+	margin-right: 5px;
+}
