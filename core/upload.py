@@ -28,7 +28,7 @@ def success():
         # return render_template("/upload/success.html", names=files)
   
 def process_file(path, filename):
-    rotate_pages(path, filename)
+    rotate_pages(path, filename, DOWNLOAD_FOLDER)
 
 def process_multiple_files(path, filenames):
     merge_pages(path, filenames, DOWNLOAD_FOLDER)
