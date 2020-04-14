@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request  
+import os 
 
-app = Flask(__name__)  
+dir_path = os.path.dirname(os.path.realpath(__file__))
+UPLOAD_FOLDER = os.path.join(dir_path, 'uploads')  
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER']	= UPLOAD_FOLDER
+
  
 @app.route('/')  
 def upload():  
@@ -10,7 +16,7 @@ def upload():
 def success():  
     if request.method == 'POST':  
         f = request.files['file']  
-        f.save(f.filename)  
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))  
         return render_template("/upload/success.html", name = f.filename)  
   
 if __name__ == '__main__':  
