@@ -15,9 +15,10 @@ def upload():
 @app.route('/success', methods = ['POST'])  
 def success():  
     if request.method == 'POST':  
-        f = request.files['file']  
-        f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))  
-        return render_template("/upload/success.html", name = f.filename)  
+        files = request.files.getlist('file')
+        for f in files:
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))  
+        return render_template("/upload/success.html", names=files)
   
 if __name__ == '__main__':  
     app.run(debug = True)  

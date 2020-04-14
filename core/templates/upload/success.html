@@ -4,6 +4,10 @@
 </head>  
 <body>  
 <p>File uploaded successfully</p>  
-<p>File Name: {{name}}</p>  
+<p>File Names: 
+    {%for name in names%}
+    {{name.filename}} ,
+    {%endfor%} </p>
+
 </body>  
 </html>  
