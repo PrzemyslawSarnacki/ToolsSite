@@ -1,6 +1,11 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import os
 
+ALLOWED_EXTENSIONS = {'pdf'}
+
+def allowed_file(filename):
+   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 def rotate_pages(path, filename, DOWNLOAD_FOLDER):
     input_file = PdfFileReader(open(path, 'rb'))
     output = PdfFileWriter()
