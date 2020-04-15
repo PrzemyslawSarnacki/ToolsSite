@@ -43,7 +43,7 @@ def success():
                 filenames.append(filename)
             else:
                 print("File doesn't have pdf extension!")
-                redirect("/")
+                return redirect("/")
         process_multiple_files(app.config["UPLOAD_FOLDER"], filenames)
         return redirect(url_for("uploaded_file", filename="merged_document.pdf"))
 
