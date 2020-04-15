@@ -17,7 +17,7 @@ DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + "/downloads/"
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["DOWNLOAD_FOLDER"] = DOWNLOAD_FOLDER
-
+app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 
 
 @app.route("/")
