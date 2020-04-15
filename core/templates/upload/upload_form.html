@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/upload.css">
+    <title>upload</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/success" method="post" enctype="multipart/form-data">
+            <div class="field ">
+                <input class="choose" type="file" name="file" multiple="" />
+            </div>
+            <div class="field upload">
+                Upload
+                <input name="upload-file" type="submit" value="Upload">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
