@@ -55,6 +55,9 @@ def process_file(path, filename):
 def process_multiple_files(path, filenames):
     merge_pages(path, filenames, DOWNLOAD_FOLDER)
 
+def test():
+    print("TEst")
+
 
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):
