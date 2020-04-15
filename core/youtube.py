@@ -21,12 +21,13 @@ def download():
 @app.route("/success", methods=["POST"])
 def success():
     if request.method == "POST":
-        if "link" not in request.link:
+        if "link" not in request.form:
             print("No url attached in request")
             return redirect("/")
-        link = request.link("file")
-        download_mp3(link)
-        return redirect(url_for("uploaded_file", filename="merged_document.pdf"))
+        link = request.form.get("link")
+        print(link)
+        # download_mp3(link)
+        return render_template("/youtube/success.html", link=link)
 
 
 if __name__ == "__main__":

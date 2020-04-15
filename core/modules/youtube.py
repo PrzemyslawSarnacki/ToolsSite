@@ -28,5 +28,3 @@ def download_mp3(link):
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([link])
-
-download_mp3("https://www.youtube.com/watch?v=OYUEZzinoLM")
