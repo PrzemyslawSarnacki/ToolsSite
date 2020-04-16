@@ -1,6 +1,4 @@
-from flask import Flask, redirect, render_template
-from upload import test, upload 
-from youtube import download, success
+from flask import (Flask, redirect, render_template)
 app = Flask(__name__)
 
 

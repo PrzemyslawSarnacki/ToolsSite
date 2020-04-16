@@ -9,7 +9,6 @@ from flask import (
 import os
 from modules.pdf import merge_pages, rotate_pages, allowed_file
 from werkzeug.utils import secure_filename
-from youtube import download, success
 dir_path = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
 DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + "/downloads/"
