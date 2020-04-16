@@ -12,7 +12,7 @@ from core.modules.youtube import download_mp3
 
 bp = Blueprint("youtube", __name__, url_prefix="/youtube")
 
-@bp.route("/youtube")
+@bp.route("/")
 def youtube():
     return render_template("/youtube/youtube_form.html")
 
@@ -22,7 +22,7 @@ def success():
     if request.method == "POST":
         if "link" not in request.form:
             print("No url attached in request")
-            return redirect("/")
+            return redirect(url_for("youtube.youtube"))
         link = request.form.get("link")
         print(link)
         # download_mp3(link)
