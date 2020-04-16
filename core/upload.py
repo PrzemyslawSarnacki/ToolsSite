@@ -20,13 +20,6 @@ app.config["DOWNLOAD_FOLDER"] = DOWNLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 
 
-@app.route("/")
-def upload():
-    return render_template("/upload/upload_form.html")
-@app.route('/youtube')
-def download_youtube():
-    return download()
-
 @app.route("/upload_success", methods=["POST"])
 def upload_success():
     if request.method == "POST":
@@ -48,6 +41,7 @@ def upload_success():
                 return redirect("/upload")
         process_multiple_files(app.config["UPLOAD_FOLDER"], filenames)
         return redirect(url_for("uploaded_file", filename="merged_document.pdf"))
+    return render_template("/upload/upload_form.html")
 
 
 def process_file(path, filename):
@@ -56,9 +50,6 @@ def process_file(path, filename):
 
 def process_multiple_files(path, filenames):
     merge_pages(path, filenames, DOWNLOAD_FOLDER)
-
-def test():
-    print("TEst")
 
 
 @app.route("/uploads/<filename>")

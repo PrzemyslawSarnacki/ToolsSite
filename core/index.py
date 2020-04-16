@@ -8,12 +8,6 @@ app = Flask(__name__)
 def hello():
     return render_template("/index/index_form.html")
 
-@app.route('/upload')
-def merge_pdf():
-    return upload()
-@app.route('/youtube')
-def download_youtube():
-    return download()
 
 if __name__ == "__main__":
     app.run(debug=True)
