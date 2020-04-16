@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 from flask import Flask, redirect, render_template
 <<<<<<< HEAD
 from upload import test, upload 
 from youtube import download, success
+=======
+from flask import (Flask, redirect, render_template)
+>>>>>>> e7eefa74aa8ea88e9835f9b320a1a19ce0f96c24
 app = Flask(__name__)
 =======
 from core.youtube import *
