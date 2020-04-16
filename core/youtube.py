@@ -13,10 +13,11 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/youtube")
 def download():
     return render_template("/youtube/youtube_form.html")
-
+def home_page():
+    return redirect("/home")
 
 @app.route("/success", methods=["POST"])
 def success():

@@ -25,16 +25,16 @@ def upload():
     return render_template("/upload/upload_form.html")
 
 
-@app.route("/success", methods=["POST"])
+@app.route("/upload_success", methods=["POST"])
 def success():
     if request.method == "POST":
         if "file" not in request.files:
             print("No file attached in request")
-            return redirect("/")
+            return redirect("/upload")
         files = request.files.getlist("file")
         if len(files) < 2:
             print("No file selected")
-            return redirect("/")
+            return redirect("/upload")
         filenames = []
         for f in files:
             if f and allowed_file(f.filename):
@@ -43,7 +43,7 @@ def success():
                 filenames.append(filename)
             else:
                 print("File doesn't have pdf extension!")
-                return redirect("/")
+                return redirect("/upload")
         process_multiple_files(app.config["UPLOAD_FOLDER"], filenames)
         return redirect(url_for("uploaded_file", filename="merged_document.pdf"))
 
