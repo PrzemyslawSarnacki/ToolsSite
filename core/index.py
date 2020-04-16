@@ -1,16 +1,10 @@
 from flask import Flask, redirect, render_template
-from upload import test, upload 
+from core.youtube import *
+from core.merge import *
 
-app = Flask(__name__)
+bp = Blueprint("index", __name__, url_prefix="/")
 
 
-@app.route('/home')
-def hello():
+@bp.route('/')
+def index():
     return render_template("/index/index_form.html")
-
-@app.route('/')
-def home():
-    return upload()
-
-if __name__ == "__main__":
-    app.run(debug=True)

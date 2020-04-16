@@ -5,20 +5,19 @@ from flask import (
     redirect,
     url_for,
     send_from_directory,
+    Blueprint,
 )
 import os
-from modules.youtube import download_mp3
+from core.modules.youtube import download_mp3
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+bp = Blueprint("youtube", __name__, url_prefix="/youtube")
 
-app = Flask(__name__)
-
-@app.route("/")
-def download():
+@bp.route("/youtube")
+def youtube():
     return render_template("/youtube/youtube_form.html")
 
 
-@app.route("/success", methods=["POST"])
+@bp.route("/success", methods=["POST"])
 def success():
     if request.method == "POST":
         if "link" not in request.form:
@@ -29,6 +28,3 @@ def success():
         # download_mp3(link)
         return render_template("/youtube/success.html", link=link)
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
