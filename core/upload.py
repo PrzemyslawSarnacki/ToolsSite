@@ -9,7 +9,7 @@ from flask import (
 import os
 from modules.pdf import merge_pages, rotate_pages, allowed_file
 from werkzeug.utils import secure_filename
-
+from youtube import download, success
 dir_path = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
 DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + "/downloads/"
@@ -23,10 +23,12 @@ app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 @app.route("/")
 def upload():
     return render_template("/upload/upload_form.html")
-
+@app.route('/youtube')
+def download_youtube():
+    return download()
 
 @app.route("/upload_success", methods=["POST"])
-def success():
+def upload_success():
     if request.method == "POST":
         if "file" not in request.files:
             print("No file attached in request")

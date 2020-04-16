@@ -10,10 +10,10 @@ def hello():
 
 @app.route('/upload')
 def merge_pdf():
-    return redirect("/upload")
+    return upload()
 @app.route('/youtube')
 def download_youtube():
-    return redirect("/youtube")
+    return download()
 
 if __name__ == "__main__":
     app.run(debug=True)
