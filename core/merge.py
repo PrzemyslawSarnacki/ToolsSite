@@ -26,11 +26,11 @@ def merge():
         print("kki")
         if "file" not in request.files:
             print("No file attached in request")
-            return redirect(url_for("merge"))
+            return redirect(url_for("merge.merge"))
         files = request.files.getlist("file")
         if len(files) < 2:
             print("No file selected")
-            return redirect(url_for("merge"))
+            return redirect(url_for("merge.merge"))
         filenames = []
         for f in files:
             if f and allowed_file(f.filename):
@@ -39,7 +39,7 @@ def merge():
                 filenames.append(filename)
             else:
                 print("File doesn't have pdf extension!")
-                return redirect(url_for("merge"))
+                return redirect(url_for("merge.merge"))
         process_multiple_files(bp.config["UPLOAD_FOLDER"], filenames)
         return redirect(url_for("merge.uploaded_file", filename="merged_document.pdf"))
     print("okki")
