@@ -27,4 +27,5 @@ def success():
         print(link)
         # download_mp3(link)
         return render_template("/youtube/success.html", link=link)
+    return render_template("/youtube/youtube_form.html")
 
