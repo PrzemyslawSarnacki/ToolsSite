@@ -21,6 +21,7 @@ __pycache__/
 *.webp
 *.mp4
 *.mov
+*.docx
 # Distribution / packaging
 .Python
 build/
