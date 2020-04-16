@@ -1,0 +1,22 @@
+
+</body>
+
+</html>
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<title>upload</title>
+<div class="container">
+    <form action="/success" method="post" enctype="multipart/form-data">
+        <div class="field ">
+            <input class="choose" type="file" name="file"/>
+        </div>
+        <div class="field upload">
+            Upload
+            <input name="upload-file" type="submit" value="Upload">
+        </div>
+    </form>
+</div>>
+{% endblock %}
