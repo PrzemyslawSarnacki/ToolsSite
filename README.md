@@ -7,13 +7,13 @@ Run
 
 ::
 
-    $ export FLASK_APP=flaskr
+    $ export FLASK_APP=core
     $ export FLASK_ENV=development
     $ flask run
 
 Or on Windows cmd::
 
-    > set FLASK_APP=flaskr
+    > set FLASK_APP=core
     > set FLASK_ENV=development
     > flask run
 
