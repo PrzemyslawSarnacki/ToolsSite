@@ -1,14 +1,16 @@
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../static/upload.css">
-    <title>Portal z narzędziami</title>
-</head>
-
-<body>
-
-
-</body>
-
-</html>
+{% block content %}
+<title>Portal z narzędziami</title>
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="field ">
+            <input class="choose" type="file" name="file" />
+        </div>
+        <div class="field upload">
+            Upload
+            <input name="upload-file" type="submit" value="Upload">
+        </div>
+    </form>
+</div>
+{% endblock %}

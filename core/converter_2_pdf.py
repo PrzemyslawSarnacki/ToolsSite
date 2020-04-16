@@ -19,7 +19,7 @@ app.config["DOWNLOAD_FOLDER"] = DOWNLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 
 @app.route('/converter_2_pdf')
-def hello():
+def conv2pdf():
     return render_template("/converter_2_pdf/converter_2_pdf.html")
 
 @app.route("/converter_2_pdf_success", methods=["POST"])
