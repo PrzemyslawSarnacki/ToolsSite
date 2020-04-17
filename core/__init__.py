@@ -7,8 +7,10 @@ def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
+    print(dir_path)
     UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
     DOWNLOAD_FOLDER = os.path.join(dir_path, "downloads")
+
 
 
 

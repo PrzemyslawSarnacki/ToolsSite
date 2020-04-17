@@ -22,7 +22,6 @@ def record_params(setup_state):
 @bp.route("/", methods=["POST", "GET"])
 def merge():
     if request.method == 'POST':
-        print("kki")
         if "file" not in request.files:
             print("No file attached in request")
             return redirect(url_for("merge.merge"))
@@ -41,7 +40,6 @@ def merge():
                 return redirect(url_for("merge.merge"))
         process_multiple_files(bp.config["UPLOAD_FOLDER"], filenames)
         return redirect(url_for("merge.uploaded_file", filename="merged_document.pdf"))
-    print("okki")
     return render_template("/upload/upload_form.html")
 
 
