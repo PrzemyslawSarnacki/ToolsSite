@@ -16,8 +16,8 @@ bp.config = {}
 
 @bp.record
 def record_params(setup_state):
-  app = setup_state.app
-  bp.config = dict([(key,value) for (key,value) in app.config.items()])
+    app = setup_state.app
+    bp.config = dict([(key,value) for (key,value) in app.config.items()])
 
 @bp.route("/", methods=["POST", "GET"])
 def merge():

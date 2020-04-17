@@ -7,10 +7,4 @@ def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def conv2pdf(path, DOWNLOAD_FOLDER):
-   print("weszlo2")
-   print(path)
-   print("weszlo3")
-   print(DOWNLOAD_FOLDER)
-   print("weszlo4")
-   convert(path, DOWNLOAD_FOLDER)
-   print("weszlo5")
+    convert(r"C:\Users\Przemyslaw\Projects\ToolsSite\core/uploads/Sprawozdanie-Lab1-sieci-neuronowe-1.docx", r"C:\Users\Przemyslaw\Projects\ToolsSite\core\downloads\output.pdf")

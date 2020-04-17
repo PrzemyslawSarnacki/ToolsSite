@@ -1,4 +1,4 @@
 from core import create_app
 
-
-create_app().run(debug=True)
+if __name__ == "__main__":
+    create_app().run(debug=True)
