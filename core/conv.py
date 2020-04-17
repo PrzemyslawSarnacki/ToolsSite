@@ -36,15 +36,16 @@ def conv():
             else:
                 print("File doesn't have docx extension!")
                 return redirect(url_for("conv.conv"))
-        print("stage 2")
-        process_file()
-        return redirect(url_for("conv.uploaded_file", filename="merged_document.pdf"))
+        print(filenames[0])
+        
+        process_file(filenames[0])
+        return redirect(url_for("conv.uploaded_file", filename="output.pdf"))
     print("nope")
     return render_template("/upload/upload_form.html")
 
-def process_file():
+def process_file(filename):
     print("weszlo")
-    conv2pdf(bp.config["UPLOAD_FOLDER"], bp.config["DOWNLOAD_FOLDER"])
+    conv2pdf(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"] + "/output.pdf")
 
 @bp.route("/uploads/<filename>")
 def uploaded_file(filename):
