@@ -6,5 +6,11 @@ ALLOWED_EXTENSIONS = {'docx'}
 def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def convert_docx_to_pdf(filename):
-    convert(filename, "output.pdf")
+def conv2pdf(path, DOWNLOAD_FOLDER):
+   print("weszlo2")
+   print(path)
+   print("weszlo3")
+   print(DOWNLOAD_FOLDER)
+   print("weszlo4")
+   convert(path, DOWNLOAD_FOLDER)
+   print("weszlo5")

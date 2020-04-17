@@ -8,7 +8,7 @@ def create_app(test_config=None):
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
-    DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + "/downloads/"
+    DOWNLOAD_FOLDER = os.path.join(dir_path, "downloads")
 
 
 
