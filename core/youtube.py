@@ -39,6 +39,7 @@ def success():
             return redirect(url_for("youtube.youtube"))
         link = request.form.get("link")
         return render_template("/youtube/success.html", link=link)
+    return render_template("/youtube/youtube_form.html")
 
 @bp.route("/download/<filename>")
 def uploaded_file(filename):
