@@ -8,7 +8,7 @@ def create_app(test_config=None):
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
-    DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + "/downloads/"
+    DOWNLOAD_FOLDER = os.path.join(dir_path, "downloads")
 
 
 
@@ -46,12 +46,12 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # apply the blueprints to the app
-    from core import merge, youtube, index
+    from core import merge, youtube, index, conv
 
     app.register_blueprint(youtube.bp)
     app.register_blueprint(merge.bp)
     app.register_blueprint(index.bp)
-
+    app.register_blueprint(conv.bp)
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
     # app.route, while giving the blog blueprint a url_prefix, but for

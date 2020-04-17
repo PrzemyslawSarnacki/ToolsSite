@@ -1,11 +1,17 @@
-<html>  
-<head>  
-<title>success</title>  
-</head>  
-<body>  
-<p>Link for video</p>  
-<p>Link: 
-    {{link}} </p>
+{% extends 'base.html' %}
 
-</body>  
-</html>  
+{% block content %}
+<title>success</title>  
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="field" style="text-align:center">
+            <label for="exampleFormControlFile1"  >Link for video</label>
+        </div>
+        <div class="field upload">
+            <button type="button" class="btn btn-outline-primary"><a href="{{link}}">{{link}}</a></button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
