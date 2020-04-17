@@ -37,13 +37,8 @@ def download_mp3(link):
         "progress_hooks": [my_hook],
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        print(ydl_opts["outtmpl"])
-        result = ydl.download([link])
-        print(ydl_opts["outtmpl"])
-        filename = ydl.prepare_filename(result)
-        print(ydl_opts["outtmpl"])
-        print(filename)
-
+        info = ydl.extract_info(link, download=True)
+        filename = os.path.basename(ydl.prepare_filename(info))
     return filename
 
 def download_playlist(parameter_list):
