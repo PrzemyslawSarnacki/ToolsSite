@@ -1,4 +1,4 @@
-from core import app
+from core import create_app
 
 
-app.run(debug=True)
+create_app().run(debug=True)
