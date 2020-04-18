@@ -1,5 +1,6 @@
 import youtube_dl
 import os
+import zipfile
 
 
 def my_hook(d):
@@ -20,6 +21,7 @@ def download_video(link):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=True)
         filename = os.path.basename(ydl.prepare_filename(info))
+    print(filename)
     return filename
 
 
@@ -41,5 +43,24 @@ def download_mp3(link):
         filename = os.path.basename(ydl.prepare_filename(info))
     return filename
 
-def download_playlist(parameter_list):
+def download_playlist(link, DOWNLOAD_FOLDER):
+    ydl_opts = {
+        "outtmpl": "/core/downloads/%(title)s.%(ext)s",
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(link, download=True)
+        filenames = []
+        for video in info['entries']:
+            if not video:
+                print('ERROR: Unable to get info. Continuing...')
+                continue
+            title = video.get('title').replace(":", " -")
+            filenames.append(f"{title}.{video.get('ext')}")
+    zip_file = zipfile.ZipFile(f"{DOWNLOAD_FOLDER}/down.zip", 'w')
+    with zip_file:
+        for filename in filenames:
+            zip_file.write(f"{DOWNLOAD_FOLDER}/{filename}", arcname=filename)
+    return "down.zip"
+
+def download_mp3_playlist(link):
     pass
