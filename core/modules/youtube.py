@@ -18,8 +18,9 @@ def download_video(link):
         "outtmpl": "/core/downloads/%(title)s.%(ext)s",
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(link, download=True)
+        info = ydl.extract_info(link, download=False)
         filename = os.path.basename(ydl.prepare_filename(info))
+    print(filename)
     return filename
 
 
@@ -41,5 +42,20 @@ def download_mp3(link):
         filename = os.path.basename(ydl.prepare_filename(info))
     return filename
 
-def download_playlist(parameter_list):
-    pass
+def download_playlist(link):
+    ydl_opts = {
+        "outtmpl": "/core/downloads/%(title)s.%(ext)s",
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(link, download=False)
+        filenames = []
+        for video in info['entries']:
+            if not video:
+                print('ERROR: Unable to get info. Continuing...')
+                continue
+            filenames.append(f"{video.get('title')}.{video.get('ext')}")
+    print(filenames)
+    return filenames
+
+
+download_playlist("https://www.youtube.com/playlist?list=PLVArNR3Nc3LgUTNewtI-OY08HXJq_6Xy_")
