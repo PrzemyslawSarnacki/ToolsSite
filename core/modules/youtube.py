@@ -19,7 +19,7 @@ def download_video(link):
         "outtmpl": "/core/downloads/%(title)s.%(ext)s",
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(link, download=False)
+        info = ydl.extract_info(link, download=True)
         filename = os.path.basename(ydl.prepare_filename(info))
     print(filename)
     return filename
@@ -43,8 +43,7 @@ def download_mp3(link):
         filename = os.path.basename(ydl.prepare_filename(info))
     return filename
 
-def download_playlist(link):
-    dir_name = r"C:/Users/Przemyslaw/Projects/ToolsSite/core/downloads/"
+def download_playlist(link, DOWNLOAD_FOLDER):
     ydl_opts = {
         "outtmpl": "/core/downloads/%(title)s.%(ext)s",
     }
@@ -57,8 +56,11 @@ def download_playlist(link):
                 continue
             title = video.get('title').replace(":", " -")
             filenames.append(f"{title}.{video.get('ext')}")
-    zip_file = zipfile.ZipFile(f"{dir_name}down.zip", 'w')
+    zip_file = zipfile.ZipFile(f"{DOWNLOAD_FOLDER}/down.zip", 'w')
     with zip_file:
         for filename in filenames:
-            zip_file.write(f"{dir_name}{filename}", arcname=filename)
+            zip_file.write(f"{DOWNLOAD_FOLDER}/{filename}", arcname=filename)
     return "down.zip"
+
+def download_mp3_playlist(link):
+    pass

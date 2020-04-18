@@ -28,9 +28,9 @@ def video():
         link = request.form.get("link")
         filename = download_video(link)
         return redirect(url_for("youtube.uploaded_file", filename=filename))
-    return render_template("/youtube/youtube_form.html")
+    return render_template("/youtube/youtube_form.html", context="Download Video")
 
-@bp.route("/", methods=["GET", "POST"])
+@bp.route("/mp3", methods=["GET", "POST"])
 def mp3():
     if request.method == "POST":
         if "link" not in request.form:
@@ -39,18 +39,18 @@ def mp3():
         link = request.form.get("link")
         filename = download_mp3(link)
         return redirect(url_for("youtube.uploaded_file", filename=filename))
-    return render_template("/youtube/youtube_form.html")
+    return render_template("/youtube/youtube_form.html", context="Download MP3")
 
-@bp.route("/", methods=["GET", "POST"])
+@bp.route("/playlist", methods=["GET", "POST"])
 def playlist():
     if request.method == "POST":
         if "link" not in request.form:
             print("No url attached in request")
-            return redirect(url_for("youtube.youtube"))
+            return redirect(url_for("youtube.playlist"))
         link = request.form.get("link")
-        filename = download_playlist(link)
+        filename = download_playlist(link, bp.config["DOWNLOAD_FOLDER"])
         return redirect(url_for("youtube.uploaded_file", filename=filename))
-    return render_template("/youtube/youtube_form.html")
+    return render_template("/youtube/youtube_form.html", context="Download Playlist")
 
 
 @bp.route("/success", methods=["POST"])
