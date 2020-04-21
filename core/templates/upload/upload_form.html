@@ -6,15 +6,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Flask-Dropzone Demo: Parallel Upload</title>
+</head>
   {{ dropzone.load_css() }}
   {{ dropzone.style('border: 2px dashed #0087F7; text-align: center;  min-height: 200px;') }}
-</head>
-<body >
 <body style="text-align: center;">
   {{ dropzone.create(action='merge.merge') }}
-
-<button  class="link" id="upload">Upload</button>
-
+  
+<button class="btn primary" id="upload">Upload</button>
+  
   {{ dropzone.load_js() }}
   {{ dropzone.config() }}
   
