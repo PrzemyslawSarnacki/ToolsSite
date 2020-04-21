@@ -1,16 +1,26 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<title>upload</title>
-<div class="container">
-    <form method="post" enctype="multipart/form-data">
-        <div class="field ">
-            <input class="choose" type="file" name="file" multiple=""/>
-        </div>
-        <div class="field upload">
-            Upload
-            <input name="upload-file" type="submit" value="Upload">
-        </div>
-    </form>
-</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flask-Dropzone Demo: Parallel Upload</title>
+  {{ dropzone.load_css() }}
+  {{ dropzone.style('border: 2px dashed #0087F7; text-align: center;  min-height: 200px;') }}
+</head>
+<body >
+<body style="text-align: center;">
+  {{ dropzone.create(action='merge.merge') }}
+
+<button  class="link" id="upload">Upload</button>
+
+  {{ dropzone.load_js() }}
+  {{ dropzone.config() }}
+  
+    
+</body>
+
+
+</html>
 {% endblock %}

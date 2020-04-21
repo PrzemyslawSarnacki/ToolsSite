@@ -1,6 +1,9 @@
 import os
 
+from flask_dropzone import Dropzone
 from flask import Flask, render_template
+
+dropzone = Dropzone()
 
 
 def create_app(test_config=None):
@@ -15,9 +18,20 @@ def create_app(test_config=None):
 
 
     app = Flask(__name__, instance_relative_config=True)
+    dropzone.init_app(app)
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     app.config["DOWNLOAD_FOLDER"] = DOWNLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
+    app.config.update(
+        DROPZONE_MAX_FILE_SIZE=3,
+        DROPZONE_MAX_FILES=30,
+        DROPZONE_PARALLEL_UPLOADS=3,  # set parallel amount
+        DROPZONE_UPLOAD_MULTIPLE=True,
+        DROPZONE_UPLOAD_ON_CLICK=True,
+        DROPZONE_ALLOWED_FILE_CUSTOM=False,
+        DROPZONE_REDIRECT_VIEW = 'merge.uploaded_file'  # set redirect view
+    )
+
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
         SECRET_KEY="dev",
