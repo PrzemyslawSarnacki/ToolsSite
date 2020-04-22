@@ -41,6 +41,7 @@ def download_mp3(link):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=True)
         filename = os.path.basename(ydl.prepare_filename(info))
+        
     return filename
 
 def download_playlist(link, DOWNLOAD_FOLDER):
@@ -54,7 +55,7 @@ def download_playlist(link, DOWNLOAD_FOLDER):
             if not video:
                 print('ERROR: Unable to get info. Continuing...')
                 continue
-            title = video.get('title').replace(":", " -")
+            title = video.get('title').replace(":", " -").replace('"',"'")
             filenames.append(f"{title}.{video.get('ext')}")
     zip_file = zipfile.ZipFile(f"{DOWNLOAD_FOLDER}/down.zip", 'w')
     with zip_file:
@@ -64,3 +65,6 @@ def download_playlist(link, DOWNLOAD_FOLDER):
 
 def download_mp3_playlist(link):
     pass
+
+
+download_mp3("https://www.youtube.com/watch?v=5DEdR5lqnDE")
