@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 bp = Blueprint("merge", __name__, url_prefix="/merge")
 bp.config = {}
 
+
 @bp.record
 def record_params(setup_state):
   app = setup_state.app
