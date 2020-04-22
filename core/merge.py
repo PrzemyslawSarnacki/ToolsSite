@@ -38,7 +38,7 @@ def merge():
         process_multiple_files(bp.config["UPLOAD_FOLDER"], filenames)
         print("ok1")
         # print(bp.config)
-        return redirect(url_for("merge.uploaded_file"))
+        return redirect(url_for("merge.download"))
     return render_template('/upload/upload_form.html')
 
 
@@ -50,7 +50,7 @@ def process_multiple_files(path, filenames):
 
 
 @bp.route("/uploads", methods=["POST", "GET"])
-def uploaded_file():
+def download():
     filename="merged_document.pdf"
     return send_from_directory(
         bp.config["DOWNLOAD_FOLDER"], filename, as_attachment=True

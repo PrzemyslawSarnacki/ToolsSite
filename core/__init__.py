@@ -29,7 +29,7 @@ def create_app(test_config=None):
         DROPZONE_UPLOAD_MULTIPLE=True,
         DROPZONE_UPLOAD_ON_CLICK=True,
         DROPZONE_ALLOWED_FILE_CUSTOM=False,
-        DROPZONE_REDIRECT_VIEW = 'merge.uploaded_file'  # set redirect view
+        # DROPZONE_REDIRECT_VIEW = 'merge.uploaded_file'  # set redirect view
     )
 
     app.config.from_mapping(

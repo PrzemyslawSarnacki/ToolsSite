@@ -41,7 +41,7 @@ def conv():
         process_file(filenames[0])
         return redirect(url_for("conv.uploaded_file", filename="output.pdf"))
     print("nope")
-    return render_template("/upload/upload_form.html")
+    return render_template("/conv/conv_form.html")
 
 def process_file(filename):
     print("weszlo")
