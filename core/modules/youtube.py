@@ -28,7 +28,7 @@ def download_video(link):
 def download_mp3(link):
     ydl_opts = {
         "format": "bestaudio/best",
-        "outtmpl": "/core/downloads/%(title)s.%(ext)s",
+        "outtmpl": "/core/downloads/%(title)s.mp3",
         "postprocessors": [
             {
                 "key": "FFmpegExtractAudio",
@@ -41,7 +41,7 @@ def download_mp3(link):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=True)
         filename = os.path.basename(ydl.prepare_filename(info))
-        
+    print(filename)    
     return filename
 
 def download_playlist(link, DOWNLOAD_FOLDER):
@@ -63,8 +63,31 @@ def download_playlist(link, DOWNLOAD_FOLDER):
             zip_file.write(f"{DOWNLOAD_FOLDER}/{filename}", arcname=filename)
     return "down.zip"
 
-def download_mp3_playlist(link):
-    pass
+def download_mp3_playlist(link, DOWNLOAD_FOLDER):
+    ydl_opts = {
+        "format": "bestaudio/best",
+        "outtmpl": "/core/downloads/%(title)s.mp3",
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "192",
+            }
+        ],  
+        "progress_hooks": [my_hook],
+        }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(link, download=True)
+        filenames = []
+        for video in info['entries']:
+            if not video:
+                print('ERROR: Unable to get info. Continuing...')
+                continue
+            title = video.get('title').replace(":", " -").replace('"',"'")
+            filenames.append(f"{title}.mp3")
+    zip_file = zipfile.ZipFile(f"{DOWNLOAD_FOLDER}/down.zip", 'w')
+    with zip_file:
+        for filename in filenames:
+            zip_file.write(f"{DOWNLOAD_FOLDER}/{filename}", arcname=filename)
+    return "down.zip"
 
-
-download_mp3("https://www.youtube.com/watch?v=5DEdR5lqnDE")
