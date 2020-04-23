@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<title>upload</title>
-<div class="container">
-    <form action="/success" method="post" enctype="multipart/form-data">
-        <div class="field ">
-            <input class="choose" type="file" name="file"/>
-        </div>
-        <div class="field upload">
-            Upload
-            <input name="upload-file" type="submit" value="Upload">
-        </div>
-    </form>
-</div>>
+
+
+  {{ dropzone.load_css() }}
+  {{ dropzone.style('border: 2px dashed #0087F7;border-color: #dd4b4d; background-color: lightgray; text-align: center;  min-height: 200px;') }}
+<body>
+    <div style=" text-align: center;">
+      {% if context != None %}
+      <h1 style="color: lightgoldenrodyellow;">{{ context }}</h1>
+      {% endif %}
+  {{ dropzone.create(action='conv.conv') }}
+	
+    <button type="button" style=" margin: 10px; width: 200px; height: 50px; color: white;" class="btn btn-danger" id="upload">Upload</button>
+  </div>
+  
+  {{ dropzone.load_js() }}
+  {{ dropzone.config(custom_options='autoProcessQueue: false, acceptedFiles: ".docx", addRemoveLinks: true,' , redirect_url=url_for('conv.download')) }}.
+    
+</body>
+
+
 {% endblock %}

@@ -51,11 +51,14 @@ def download_playlist(link, DOWNLOAD_FOLDER):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=True)
         filenames = []
+        forbidden_chars = {":": " -", '"': "'"} 
         for video in info['entries']:
             if not video:
                 print('ERROR: Unable to get info. Continuing...')
                 continue
-            title = video.get('title').replace(":", " -").replace('"',"'")
+            title = video.get('title')
+            for key in forbidden_chars.keys():
+                title.replace(key, forbidden_chars[key])
             filenames.append(f"{title}.{video.get('ext')}")
     zip_file = zipfile.ZipFile(f"{DOWNLOAD_FOLDER}/down.zip", 'w')
     with zip_file:

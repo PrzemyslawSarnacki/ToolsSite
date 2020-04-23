@@ -5,11 +5,17 @@
 <div class="container">
     <form method="post" enctype="multipart/form-data">
         <p style="text-align: center;">{{context}}</p>
+        <div style="text-align:center; margin: auto;">
+            <a type="btn" style="margin: 3px;" class="btn btn-primary" href="{{ url_for('youtube.mp3') }}"> MP3</a>
+            <a type="btn" style="margin: 3px;" class="btn btn-primary" href="{{ url_for('youtube.playlist') }}"> Playlist</a>
+            <a type="btn" style="margin: 3px;" class="btn btn-primary" href="{{ url_for('youtube.playlist_mp3') }}"> MP3 Playlist</a>
+            <a type="btn" style="margin: 3px;" class="btn btn-primary" href="{{ url_for('youtube.video') }}"> Video</a>
+        </div>
         <div class="field ">
                 <input class="link" type="url" name="link" />
             </div>
-            <div class="field upload">
-                <button > 
+            <div style="text-align: center;" >
+                <button style=" margin-top: 5px; width: 100%; height: 40px; color: white;" class="btn btn-danger"> 
                     Download
                 </button>
             </div>
