@@ -5,16 +5,19 @@
   {{ dropzone.load_css() }}
   {{ dropzone.style('border: 2px dashed #0087F7; background-color: lightgray; text-align: center;  min-height: 200px;') }}
 <body>
-    <div style=" text-align: center;">
-  {{ dropzone.create(action='merge.merge') }}
+  <div style=" text-align: center;">
+    {% if context != None %}
+    <h1 style="color: lightgoldenrodyellow;">{{ context }}</h1>
+    {% endif %}
+    
+    {{ dropzone.create(action='merge.merge') }}
 	
     <button type="button" style=" margin: 10px; width: 200px; height: 50px; color: white;" class="btn btn-danger" id="upload">Upload</button>
   </div>
   
   {{ dropzone.load_js() }}
-  {{ dropzone.config() }}
-  {{ dropzone.config(redirect_url=url_for('merge.download')) }}.
-    
+  {{ dropzone.config(custom_options='autoProcessQueue: false, acceptedFiles: ".pdf", addRemoveLinks: true, parallelUploads: 20,', redirect_url=url_for('merge.download')) }}.
+
 </body>
 
 

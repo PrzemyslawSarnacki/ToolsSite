@@ -8,7 +8,7 @@ from flask import (
     Blueprint,
 )
 import os
-from core.modules.youtube import download_mp3, download_video, download_playlist
+from core.modules.youtube import download_mp3, download_mp3_playlist, download_video, download_playlist
 
 bp = Blueprint("youtube", __name__, url_prefix="/youtube")
 bp.config = {}
@@ -52,6 +52,16 @@ def playlist():
         return redirect(url_for("youtube.uploaded_file", filename=filename))
     return render_template("/youtube/youtube_form.html", context="Download Playlist")
 
+@bp.route("/playlist-mp3", methods=["GET", "POST"])
+def playlist_mp3():
+    if request.method == "POST":
+        if "link" not in request.form:
+            print("No url attached in request")
+            return redirect(url_for("youtube.playlist"))
+        link = request.form.get("link")
+        filename = download_mp3_playlist(link, bp.config["DOWNLOAD_FOLDER"])
+        return redirect(url_for("youtube.uploaded_file", filename=filename))
+    return render_template("/youtube/youtube_form.html", context="Download MP3 Playlist")
 
 @bp.route("/success", methods=["POST"])
 def success():

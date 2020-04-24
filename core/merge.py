@@ -22,7 +22,7 @@ def record_params(setup_state):
     bp.config = dict([(key,value) for (key,value) in app.config.items()])
     
 @bp.route("/", methods=["POST", "GET"])
-def merge():
+def merge(context=""):
     if request.method == 'POST':
         filenames = []
         for key, f in request.files.items():
@@ -39,7 +39,7 @@ def merge():
         print("ok1")
         # print(bp.config)
         return redirect(url_for("merge.download"))
-    return render_template('/upload/upload_form.html')
+    return render_template('/upload/upload_form.html', context=request.args.get('context'))
 
 
 def process_file(path, filename):
@@ -51,8 +51,12 @@ def process_multiple_files(path, filenames):
 
 @bp.route("/uploads", methods=["POST", "GET"])
 def download():
-    filename="merged_document.pdf"
-    return send_from_directory(
-        bp.config["DOWNLOAD_FOLDER"], filename, as_attachment=True
-    )
+    try:
+        filename="merged.pdf"
+        return send_from_directory(
+            bp.config["DOWNLOAD_FOLDER"], filename, as_attachment=True
+        )    
+    except:
+        return redirect(url_for("merge.merge", context="Mamy Problem"))
+
 
