@@ -8,7 +8,7 @@ from flask import (
     Blueprint,
 )
 import os
-from core.modules.conv import conv2pdf, allowed_file, clear_directory, get_filename
+from core.modules.conv import conv2pdf, allowed_file, clear_directory, get_filename, conv_to_pdf_linux
 from werkzeug.utils import secure_filename
 
 bp = Blueprint("conv", __name__, url_prefix="/conv")
@@ -44,7 +44,8 @@ def conv(context=""):
 def process_file(filename):
     print("weszlo")
     print(filename.split(".")[0])
-    conv2pdf(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"] + "/" + filename.split(".")[0] + ".pdf")
+    # conv2pdf(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"] + "/" + filename.split(".")[0] + ".pdf")
+    conv_to_pdf_linux(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"])
 
 @bp.route("/uploads")
 def download():
