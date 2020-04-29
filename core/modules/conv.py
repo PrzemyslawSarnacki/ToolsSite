@@ -88,4 +88,4 @@ class LibreOfficeError(Exception):
 # extension = os.path.splitext(filename)[1][1:]
 # output_format = "pdf"
 # raw_bytes = convert(file.read(), extension, output_format)
-conv_to_pdf_linux("/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/uploads/DC_SDN_lab1_mininet.docx", "/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/downloads")
+# conv_to_pdf_linux("/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/uploads/DC_SDN_lab1_mininet.docx", "/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/downloads")
