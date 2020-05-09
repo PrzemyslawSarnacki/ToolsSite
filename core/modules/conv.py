@@ -81,11 +81,3 @@ def libreoffice_exec():
 class LibreOfficeError(Exception):
     def __init__(self, output):
         self.output = output
-
-
-# file = open(r"/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/uploads/DC_SDN_lab1_mininet.docx", "r")
-# filename = "Sprawozdanie_Lab1_-_sieci_neuronowe_1_fin.docx"
-# extension = os.path.splitext(filename)[1][1:]
-# output_format = "pdf"
-# raw_bytes = convert(file.read(), extension, output_format)
-# conv_to_pdf_linux("/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/uploads/DC_SDN_lab1_mininet.docx", "/mnt/c/Users/Przemyslaw/Projects/ToolsSite/core/downloads")
