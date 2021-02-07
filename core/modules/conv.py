@@ -1,4 +1,3 @@
-from docx2pdf import convert
 import os, shutil
 import sys
 import subprocess
@@ -13,8 +12,8 @@ ALLOWED_EXTENSIONS = {'docx'}
 def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def conv2pdf(path, DOWNLOAD_FOLDER):
-   convert(path, DOWNLOAD_FOLDER)
+# def conv2pdf(path, DOWNLOAD_FOLDER):
+#    convert(path, DOWNLOAD_FOLDER)
 
 def clear_directory(directory):
    for root, dirs, files in os.walk(directory):

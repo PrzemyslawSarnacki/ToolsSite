@@ -8,7 +8,6 @@ from flask import (
 )
 import os
 from core.modules.conv import (
-    conv2pdf,
     allowed_file,
     clear_directory,
     get_filename,
@@ -49,7 +48,6 @@ def conv(context=""):
 
 def process_file(filename):
     print(filename.split(".")[0])
-    # conv2pdf(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"] + "/" + filename.split(".")[0] + ".pdf")
     conv_to_pdf_linux(
         bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"]
     )
