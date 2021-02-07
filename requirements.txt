@@ -16,6 +16,7 @@ mccabe==0.6.1
 pathspec==0.8.0
 pylint==2.4.4
 PyPDF2==1.26.0
+pywin32==227
 regex==2020.4.4
 six==1.14.0
 toml==0.10.0
@@ -23,4 +24,4 @@ tqdm==4.45.0
 typed-ast==1.4.1
 Werkzeug==1.0.1
 wrapt==1.11.2
-youtube-dl==2020.3.24
+youtube-dl==2021.2.4.1
