@@ -15,6 +15,7 @@ def rotate_pages(path, filename, DOWNLOAD_FOLDER):
         output.addPage(page)
     output_stream = open(DOWNLOAD_FOLDER + filename, 'wb')
     output.write(output_stream)
+    output_stream.close()
 
 def rotate_certain_page(path, filename, DOWNLOAD_FOLDER, page_to_rotate):
     input_file = PdfFileReader(open(path, 'rb'))
@@ -26,6 +27,7 @@ def rotate_certain_page(path, filename, DOWNLOAD_FOLDER, page_to_rotate):
         output.addPage(page)
     output_stream = open(DOWNLOAD_FOLDER + filename, 'wb')
     output.write(output_stream)
+    output_stream.close()
 
 def merge_pages(path, filenames, DOWNLOAD_FOLDER):
     output_name = "/merged.pdf"

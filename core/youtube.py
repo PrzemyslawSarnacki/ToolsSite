@@ -1,5 +1,4 @@
 from flask import (
-    Flask,
     render_template,
     request,
     redirect,
@@ -7,16 +6,21 @@ from flask import (
     send_from_directory,
     Blueprint,
 )
-import os
-from core.modules.youtube import download_mp3, download_mp3_playlist, download_video, download_playlist
+from core.modules.youtube import (
+    download_mp3,
+    download_mp3_playlist,
+    download_video,
+    download_playlist,
+)
 
 bp = Blueprint("youtube", __name__, url_prefix="/youtube")
 bp.config = {}
 
+
 @bp.record
 def record_params(setup_state):
     app = setup_state.app
-    bp.config = dict([(key,value) for (key,value) in app.config.items()])
+    bp.config = dict([(key, value) for (key, value) in app.config.items()])
 
 
 @bp.route("/", methods=["GET", "POST"])
@@ -30,6 +34,7 @@ def video():
         return redirect(url_for("youtube.uploaded_file", filename=filename))
     return render_template("/youtube/youtube_form.html", context="Download Video")
 
+
 @bp.route("/mp3", methods=["GET", "POST"])
 def mp3():
     if request.method == "POST":
@@ -40,6 +45,7 @@ def mp3():
         filename = download_mp3(link)
         return redirect(url_for("youtube.uploaded_file", filename=filename))
     return render_template("/youtube/youtube_form.html", context="Download MP3")
+
 
 @bp.route("/playlist", methods=["GET", "POST"])
 def playlist():
@@ -52,6 +58,7 @@ def playlist():
         return redirect(url_for("youtube.uploaded_file", filename=filename))
     return render_template("/youtube/youtube_form.html", context="Download Playlist")
 
+
 @bp.route("/playlist-mp3", methods=["GET", "POST"])
 def playlist_mp3():
     if request.method == "POST":
@@ -61,7 +68,10 @@ def playlist_mp3():
         link = request.form.get("link")
         filename = download_mp3_playlist(link, bp.config["DOWNLOAD_FOLDER"])
         return redirect(url_for("youtube.uploaded_file", filename=filename))
-    return render_template("/youtube/youtube_form.html", context="Download MP3 Playlist")
+    return render_template(
+        "/youtube/youtube_form.html", context="Download MP3 Playlist"
+    )
+
 
 @bp.route("/success", methods=["POST"])
 def success():
@@ -72,6 +82,7 @@ def success():
         link = request.form.get("link")
         return render_template("/youtube/success.html", link=link)
     return render_template("/youtube/youtube_form.html")
+
 
 @bp.route("/download/<filename>")
 def uploaded_file(filename):

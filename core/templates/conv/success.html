@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<title>success</title>  
+<title>success</title>
 
 <div class="container">
-        <div class="field ">
-            <p>File uploaded successfully</p>  
-        </div>
-        <div class="field upload">
-            <p>File Names: 
-                {%for name in names%}
-                {{name.filename}} ,
-                {%endfor%} 
-            </p>
-        </div>
+    <div class="field ">
+        <p>File uploaded successfully</p>
+    </div>
+    <div class="field upload">
+        <p>File Names:
+            {%for name in names%}
+            {{name.filename}} ,
+            {%endfor%}
+        </p>
+    </div>
 </div>
 {% endblock %}
