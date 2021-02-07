@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<title>Portal z narzędziami</title>
+<title>Tools Site</title>
 <div class="container">
     <form method="post" enctype="multipart/form-data">
+        <h2>
+            Hi on this Website you can Perform for example:
+        </h2>
+        <ul>
+            <a href="{{ url_for('conv.conv') }}">
+                <li>Convertion from DOCX to PDF</li>
+            </a>
+            <a href="{{ url_for('merge.merge') }}">
+                <li>Multiple PDF File merge</li>
+            </a>
+            <a href="{{ url_for('youtube.video') }}">
+                <li>Download from YouTube in numerous formats</li>
+            </a>
+        </ul>
+        <p>Note that this Website was meant mostly for learning of Github Projects and merges but it can serve you as well</p>
         <div class="field ">
-            <input class="choose" type="file" name="file" />
-        </div>
-        <div class="field upload">
-            Upload
-            <input name="upload-file" type="submit" value="Upload">
         </div>
     </form>
 </div>

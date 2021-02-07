@@ -29,7 +29,6 @@ def conv(context=""):
         clear_directory(bp.config["DOWNLOAD_FOLDER"])
         for key, f in request.files.items():
             if key.startswith('file'):
-                print("nope")
                 if f and allowed_file(f.filename):
                     filename = secure_filename(f.filename)
                     f.save(os.path.join(bp.config['UPLOAD_FOLDER'], filename))
@@ -42,7 +41,6 @@ def conv(context=""):
     return render_template("/conv/conv_form.html", context=request.args.get('context'))
 
 def process_file(filename):
-    print("weszlo")
     print(filename.split(".")[0])
     # conv2pdf(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"] + "/" + filename.split(".")[0] + ".pdf")
     conv_to_pdf_linux(bp.config["UPLOAD_FOLDER"] + "/" + filename, bp.config["DOWNLOAD_FOLDER"])
@@ -51,9 +49,7 @@ def process_file(filename):
 def download():
     try:
         filename = get_filename(bp.config["DOWNLOAD_FOLDER"]) 
-        print("PLil")
         print(filename)
-
         return send_from_directory(
             bp.config["DOWNLOAD_FOLDER"], filename, as_attachment=True
         )
