@@ -1,5 +1,4 @@
 from flask import (
-    Flask,
     render_template,
     request,
     redirect,
@@ -34,10 +33,7 @@ def merge(context=""):
                 else:
                     print("File doesn't have pdf extension!")
                     return redirect(url_for("merge.merge"))
-        print("okk")
         process_multiple_files(bp.config["UPLOAD_FOLDER"], filenames)
-        print("ok1")
-        # print(bp.config)
         return redirect(url_for("merge.download"))
     return render_template(
         "/upload/upload_form.html", context=request.args.get("context")

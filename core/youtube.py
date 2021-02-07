@@ -1,5 +1,4 @@
 from flask import (
-    Flask,
     render_template,
     request,
     redirect,
@@ -7,7 +6,6 @@ from flask import (
     send_from_directory,
     Blueprint,
 )
-import os
 from core.modules.youtube import (
     download_mp3,
     download_mp3_playlist,
