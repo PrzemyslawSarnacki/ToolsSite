@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{{ dropzone.load_css() }}
+{{ dropzone.style('border: 2px dashed #0087F7;border-color: #dd4b4d; background-color: lightgray; text-align: center;
+min-height: 200px;') }}
+
+<body>
+  <div style=" text-align: center;">
+    {% if context != None %}
+    <h1 style="color: lightgoldenrodyellow;">{{ context }}</h1>
+    {% endif %}
+    {{ dropzone.create(action='rotate.rotate') }}
+    
+    <div class="field ">
+    </div>
+      <button type="button" style=" margin: 10px; width: 200px; height: 50px; color: white;" class="btn btn-danger"
+        id="upload">Upload</button>
+      </div>
+      
+      {{ dropzone.load_js() }}
+      {{ dropzone.config(custom_options='autoProcessQueue: false, acceptedFiles: ".pdf", addRemoveLinks: true,' ,
+      redirect_url=url_for('rotate.download')) }}.
+
+</body>
+
+
+{% endblock %}

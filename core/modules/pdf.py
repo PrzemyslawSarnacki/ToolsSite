@@ -6,14 +6,15 @@ ALLOWED_EXTENSIONS = {'pdf'}
 def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def rotate_pages(path, filename, DOWNLOAD_FOLDER):
-    input_file = PdfFileReader(open(path, 'rb'))
+def rotate_pages(path, filename, DOWNLOAD_FOLDER, degrees=90):
+    output_name = "/rotated.pdf"
     output = PdfFileWriter()
+    input_file = PdfFileReader(open(os.path.join(path, filename), 'rb'))
     for page_number in range(input_file.getNumPages()):
         page = input_file.getPage(page_number)
-        page.rotateClockwise(180)
+        page.rotateClockwise(degrees)
         output.addPage(page)
-    output_stream = open(DOWNLOAD_FOLDER + filename, 'wb')
+    output_stream = open(DOWNLOAD_FOLDER  + output_name, 'wb')
     output.write(output_stream)
     output_stream.close()
 
