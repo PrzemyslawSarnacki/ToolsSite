@@ -14,14 +14,11 @@ def create_app(test_config=None):
     UPLOAD_FOLDER = os.path.join(dir_path, "uploads")
     DOWNLOAD_FOLDER = os.path.join(dir_path, "downloads")
 
-
-
-
     app = Flask(__name__, instance_relative_config=True)
     dropzone.init_app(app)
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     app.config["DOWNLOAD_FOLDER"] = DOWNLOAD_FOLDER
-    app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
+    app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
     app.config.update(
         DROPZONE_MAX_FILE_SIZE=3,
         DROPZONE_MAX_FILES=30,
@@ -51,10 +48,6 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    @app.route('/hello')
-    def hello():
-        return "Hello"
 
     # register the database commands
     from core import db
