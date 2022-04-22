@@ -15,7 +15,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 pathspec==0.8.0
 pylint==2.4.4
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 regex==2020.4.4
 six==1.14.0
 toml==0.10.0
